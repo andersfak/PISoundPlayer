@@ -1,0 +1,8 @@
+winter
+monday,16:52,sound1.wav
+tuesday,19:00,sound1.wav
+wednesday,19:00,sound1.wav
+thursday,19:00,sound1.wav
+friday,19:00,sound1.wav
+saturdayday,19:00,sound1.wav
+sunday,15:00,sound3.wav
