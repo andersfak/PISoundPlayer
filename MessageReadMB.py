@@ -92,5 +92,5 @@ while True:
                     time.sleep(60)
 
 
-    print("sleep 10")
-    time.sleep(10)
+
+    time.sleep(20)
