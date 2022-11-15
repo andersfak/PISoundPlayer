@@ -35,7 +35,7 @@ while True:
         exceptions.append(line.strip())
 excFile.close()
 
-now = datetime.now()
+
 date = datetime.date(now)
 today = datetime.today().weekday()
 exceptionDate = ""
