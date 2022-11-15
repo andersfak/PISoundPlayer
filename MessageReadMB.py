@@ -6,7 +6,6 @@ import os
 os.system("sudo hwclock -s")
 
 
-
 schemaFile = open('schema.txt', 'r')
 
 line = schemaFile.readline()
@@ -23,8 +22,6 @@ while True:
 
 
 schemaFile.close()
-
-print(schema)
 
 excFile = open('exceptions.txt', 'r')
 
@@ -67,11 +64,9 @@ while True:
             exceptionDate = today
             if timeToCheck == currentTime:
 
-                print(currentTime)
                 os.system("aplay " + soundToPlay)
                 soundPlayed = True
                 time.sleep(60)
-
 
 
     # Normal-schemat:
