@@ -5,8 +5,10 @@ import os
 # set system time to RTC
 os.system("sudo hwclock -s")
 
+# path to usb disk
+path = "/media/pi/SOUND/"
 
-schemaFile = open('schema.txt', 'r')
+schemaFile = open(path + 'schema.txt', 'r')
 
 line = schemaFile.readline()
 season = line
@@ -23,7 +25,7 @@ while True:
 
 schemaFile.close()
 
-excFile = open('exceptions.txt', 'r')
+excFile = open(path + 'exceptions.txt', 'r')
 
 exceptions = []
 while True:
@@ -64,7 +66,7 @@ while True:
             exceptionDate = today
             if timeToCheck == currentTime:
 
-                os.system("aplay " + soundToPlay)
+                os.system("aplay " + path + soundToPlay)
                 soundPlayed = True
                 time.sleep(60)
 
@@ -82,7 +84,7 @@ while True:
 
             if dayToCheck == currentWeekday:
                 if timeToCheck == currentTime:
-                    os.system("aplay " + soundToPlay)
+                    os.system("aplay " + path +  soundToPlay)
                     soundPlayed = True
                     time.sleep(60)
 
