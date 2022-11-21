@@ -1,14 +1,12 @@
+#!/usr/bin/python
 from datetime import datetime
 import time
 import os
 
-# set system time to RTC
-os.system("sudo hwclock -s")
+schema_path = "/media/pi/SOUND/"
+sound_path = "/media/pi/SOUND/Meddelanden/"
 
-# path to usb disk
-path = "/media/pi/SOUND/"
-
-schemaFile = open(path + 'schema.txt', 'r')
+schemaFile = open(schema_path + 'schema.txt', 'r')
 
 line = schemaFile.readline()
 season = line
@@ -25,7 +23,7 @@ while True:
 
 schemaFile.close()
 
-excFile = open(path + 'exceptions.txt', 'r')
+excFile = open(schema_path + 'exceptions.txt', 'r')
 
 exceptions = []
 while True:
@@ -37,7 +35,7 @@ while True:
         exceptions.append(line.strip())
 excFile.close()
 
-
+now = datetime.now()
 date = datetime.date(now)
 today = datetime.today().weekday()
 exceptionDate = ""
@@ -47,7 +45,11 @@ exceptionDate = ""
 while True:
     now = datetime.now()
     tmpTime = now.time()
-    currentTime = str(str(tmpTime.hour) + ":" + str(tmpTime.minute))
+    tmpHour = tmpTime.hour
+    if season == "summer":
+        tmpHour = tmpHour-1
+    
+    currentTime = str(str(tmpHour) + ":" + str(tmpTime.minute))
     today = str(datetime.date(now))
     currentWeekday = str(datetime.today().weekday())
 
@@ -66,9 +68,11 @@ while True:
             exceptionDate = today
             if timeToCheck == currentTime:
 
-                os.system("aplay " + path + soundToPlay)
+
+                os.system("aplay " + sound_path + soundToPlay)
                 soundPlayed = True
                 time.sleep(60)
+
 
 
     # Normal-schemat:
@@ -84,10 +88,11 @@ while True:
 
             if dayToCheck == currentWeekday:
                 if timeToCheck == currentTime:
-                    os.system("aplay " + path +  soundToPlay)
+                    
+                    os.system("aplay " + sound_path + soundToPlay)
                     soundPlayed = True
                     time.sleep(60)
 
 
-
+    
     time.sleep(20)
